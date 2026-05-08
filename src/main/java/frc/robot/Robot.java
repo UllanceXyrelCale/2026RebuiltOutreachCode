@@ -9,10 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.utils.LimelightHelpers;
-<<<<<<< HEAD
 import frc.robot.utils.Pose;
-=======
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -20,18 +17,11 @@ import frc.robot.utils.Pose;
  * this project, you must also update the Main.java file in the project.
  */
 public class Robot extends TimedRobot {
-<<<<<<< HEAD
   private static final String LIMELIGHT_NAME = "limelight-naci";
 
   private Command m_autonomousCommand;
 
   private final RobotContainer m_robotContainer;
-=======
-  private Command m_autonomousCommand;
-
-  private final RobotContainer m_robotContainer;
-  private Double lastAppliedStartingHeadingDeg = null;
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -55,7 +45,6 @@ public class Robot extends TimedRobot {
 public void robotPeriodic() {
   CommandScheduler.getInstance().run();
   m_robotContainer.periodic();
-<<<<<<< HEAD
   double currentHeadingDeg = m_robotContainer.m_robotDrive.getHeading();
   double currentYawRateDegPerSec = m_robotContainer.m_robotDrive.getTurnRate();
 
@@ -67,17 +56,6 @@ public void robotPeriodic() {
 
   var llMeasurement =
       LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(LIMELIGHT_NAME);
-=======
-
-  // Give MegaTag2 the robot heading from the gyro/odometry
-  LimelightHelpers.SetRobotOrientation(
-      "limelight-naci",
-      m_robotContainer.m_robotDrive.getHeading(),
-      0.0, 0.0, 0.0, 0.0, 0.0);
-
-  var llMeasurement =
-      LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-naci");
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
   if (llMeasurement != null) {
     Variables.limelight.hasTarget = llMeasurement.tagCount > 0;
@@ -113,20 +91,12 @@ public void robotPeriodic() {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-<<<<<<< HEAD
     applyDashboardStartingPose();
-=======
-    applyDashboardStartingHeading();
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   @Override
   public void disabledPeriodic() {
-<<<<<<< HEAD
     applyDashboardStartingPose();
-=======
-    applyDashboardStartingHeading();
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
@@ -189,7 +159,6 @@ public void robotPeriodic() {
 
       // initialize only, do not zero yaw here
       drive.initializeGyro();
-<<<<<<< HEAD
       applyDashboardStartingPose();
   }).start();
 }
@@ -202,24 +171,6 @@ public void robotPeriodic() {
     DriveSubsystem drive = m_robotContainer.getDriveSubsystem();
     drive.setGyroYaw(selectedHeadingDeg);
     drive.setPose(new Pose(selectedX, selectedY, selectedHeadingDeg));
-=======
-      applyDashboardStartingHeading();
-  }).start();
-}
-
-  private void applyDashboardStartingHeading() {
-    double selectedHeadingDeg = m_robotContainer.getSelectedStartingHeadingDeg();
-
-    if (lastAppliedStartingHeadingDeg != null
-        && Double.compare(lastAppliedStartingHeadingDeg, selectedHeadingDeg) == 0) {
-      return;
-    }
-
-    DriveSubsystem drive = m_robotContainer.getDriveSubsystem();
-    drive.setGyroYaw(selectedHeadingDeg);
-    drive.resetToOrigin();
-    lastAppliedStartingHeadingDeg = selectedHeadingDeg;
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
   
 }

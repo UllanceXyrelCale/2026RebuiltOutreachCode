@@ -1,7 +1,6 @@
 package frc.robot;
 
 public class Variables {
-<<<<<<< HEAD
 
      public static class intake {
         public static double intakeRPS = 0;
@@ -21,8 +20,6 @@ public class Variables {
     public static class pivot {
         public static double pivotPosition = 0;
     }
-=======
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
     
     public static class limelight {
         public static double tid = 0;
@@ -37,10 +34,6 @@ public class Variables {
         public static double tagCount = 0;
 
         public static double latencyMs = 0;
-<<<<<<< HEAD
-=======
-        public static int pipelineIndex = -1;
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
     }
 
     public static class drive {
@@ -53,12 +46,9 @@ public class Variables {
         public static double targetHubAngleDeg = 0;
         public static double targetHubAngleErrorDeg = 0;
     }
-<<<<<<< HEAD
 
     public static double distanceMeters = 0;
     public static double turnAngle = 0;
     public static double shooterRPS = 0;
     public static double middleRPS = 0;
-=======
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 }

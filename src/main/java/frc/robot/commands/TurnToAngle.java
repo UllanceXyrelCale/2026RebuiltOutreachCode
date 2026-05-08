@@ -2,13 +2,9 @@ package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
 
-<<<<<<< HEAD
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.OIConstants;
-=======
-import edu.wpi.first.wpilibj2.command.Command;
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.utils.APPID;
 import frc.robot.utils.Calculations;
@@ -23,12 +19,9 @@ public class TurnToAngle extends Command {
   private final APPID turnPID;
   private final DoubleSupplier requestedAngleSupplier;
   private final boolean isRelative;
-<<<<<<< HEAD
   private final DoubleSupplier forwardSupplier;
   private final DoubleSupplier strafeSupplier;
   private final double translationScale;
-=======
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
   private double targetAngleDeg;
 
@@ -36,7 +29,6 @@ public class TurnToAngle extends Command {
       DriveSubsystem driveSubsystem,
       DoubleSupplier requestedAngleSupplier,
       double angleToleranceDeg,
-<<<<<<< HEAD
       boolean isRelative,
       DoubleSupplier forwardSupplier,
       DoubleSupplier strafeSupplier,
@@ -47,12 +39,6 @@ public class TurnToAngle extends Command {
     this.forwardSupplier = forwardSupplier;
     this.strafeSupplier = strafeSupplier;
     this.translationScale = MathUtil.clamp(translationScale, 0.0, 1.0);
-=======
-      boolean isRelative) {
-    this.driveSubsystem = driveSubsystem;
-    this.requestedAngleSupplier = requestedAngleSupplier;
-    this.isRelative = isRelative;
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
     turnPID = new APPID(kTurnP, kTurnI, kTurnD, angleToleranceDeg);
     turnPID.setMaxOutput(kMaxRot);
@@ -61,26 +47,17 @@ public class TurnToAngle extends Command {
   }
 
   public TurnToAngle(DriveSubsystem driveSubsystem, double targetAngleDeg) {
-<<<<<<< HEAD
     this(driveSubsystem, () -> targetAngleDeg, 1.0, false, () -> 0.0, () -> 0.0, 0.0);
   }
 
   public TurnToAngle(DriveSubsystem driveSubsystem, double targetAngleDeg, double angleToleranceDeg) {
     this(driveSubsystem, () -> targetAngleDeg, angleToleranceDeg, false, () -> 0.0, () -> 0.0, 0.0);
-=======
-    this(driveSubsystem, () -> targetAngleDeg, 2.0, false);
-  }
-
-  public TurnToAngle(DriveSubsystem driveSubsystem, double targetAngleDeg, double angleToleranceDeg) {
-    this(driveSubsystem, () -> targetAngleDeg, angleToleranceDeg, false);
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   public TurnToAngle(
       DriveSubsystem driveSubsystem,
       DoubleSupplier targetAngleSupplier,
       double angleToleranceDeg) {
-<<<<<<< HEAD
     this(driveSubsystem, targetAngleSupplier, angleToleranceDeg, false, () -> 0.0, () -> 0.0, 0.0);
   }
 
@@ -104,25 +81,14 @@ public class TurnToAngle extends Command {
   public static TurnToAngle relative(DriveSubsystem driveSubsystem, double deltaAngleDeg) {
     return new TurnToAngle(
         driveSubsystem, () -> deltaAngleDeg, 2.0, true, () -> 0.0, () -> 0.0, 0.0);
-=======
-    this(driveSubsystem, targetAngleSupplier, angleToleranceDeg, false);
-  }
-
-  public static TurnToAngle relative(DriveSubsystem driveSubsystem, double deltaAngleDeg) {
-    return new TurnToAngle(driveSubsystem, () -> deltaAngleDeg, 2.0, true);
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   public static TurnToAngle relative(
       DriveSubsystem driveSubsystem,
       double deltaAngleDeg,
       double toleranceDeg) {
-<<<<<<< HEAD
     return new TurnToAngle(
         driveSubsystem, () -> deltaAngleDeg, toleranceDeg, true, () -> 0.0, () -> 0.0, 0.0);
-=======
-    return new TurnToAngle(driveSubsystem, () -> deltaAngleDeg, toleranceDeg, true);
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   @Override
@@ -145,7 +111,6 @@ public class TurnToAngle extends Command {
 
     turnPID.setDesiredValue(0.0);
     double rotCmd = turnPID.calculate(-angleError);
-<<<<<<< HEAD
     double xCmd =
         -MathUtil.applyDeadband(forwardSupplier.getAsDouble(), OIConstants.kDriveDeadband)
             * translationScale;
@@ -154,10 +119,6 @@ public class TurnToAngle extends Command {
             * translationScale;
 
     driveSubsystem.drive(xCmd, yCmd, rotCmd, true);
-=======
-
-    driveSubsystem.drive(0.0, 0.0, rotCmd, true);
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   @Override
