@@ -39,7 +39,7 @@ public class StaticShootSequence extends SequentialCommandGroup {
 
             // Then run floor and feeder
             new ParallelCommandGroup(
-              new SetFloorRPS(floor, 40), //40
+              new SetFloorRPS(floor, 20), //40
               new SetFeederRPS(feeder, 90), //90
                 new RunIntake(intake, pivot,30, 70)
             )
