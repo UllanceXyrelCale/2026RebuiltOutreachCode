@@ -31,7 +31,7 @@ public class StaticShootSequence extends SequentialCommandGroup {
 
           // Shooter runs the entire time, never interrupted
           //new SetShooterRPS(shooter, 90),
-          new SetShooterRPS(shooter, 85),
+          new SetShooterRPS(shooter, 50),
 
           new SequentialCommandGroup(
             // Wait until shooter is up to speed before feeding

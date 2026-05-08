@@ -108,7 +108,7 @@ public class RobotContainer {
   private void configureBindings() {
     new Trigger(() -> m_driverController.getRightTriggerAxis() > 0.2)
         .whileTrue(
-            new ShootSequence(
+            new StaticShootSequence(
                 s_shooterSubsystem,
                 s_feederSubsystem,
                 s_floorSubsystem,
@@ -117,33 +117,11 @@ public class RobotContainer {
                 s_pivotSubsystem
         ));
 
-    new Trigger(m_driverController::getRightBumperButton)
-        .whileTrue(
-            new PassSequence(
-                s_shooterSubsystem,
-                s_feederSubsystem,
-                s_floorSubsystem,
-                m_robotDrive,
-                s_intakeSubsystem,
-                s_pivotSubsystem,
-                90,
-                () -> autoSelector.isBlueSelected() ? 180.0 : 0.0));
-
     new Trigger(m_driverController::getYButton)
         .whileTrue(new Purge(s_feederSubsystem, s_shooterSubsystem, s_intakeSubsystem, s_floorSubsystem));
 
     new Trigger(m_driverController::getXButton)
         .onTrue(new InstantCommand(m_robotDrive::resetGyro, m_robotDrive));
-
-    new Trigger(m_driverController::getAButton)
-        .whileTrue(
-            new StaticShootSequence(
-                s_shooterSubsystem,
-                s_feederSubsystem,
-                s_floorSubsystem,
-                m_robotDrive,
-                s_intakeSubsystem,
-                s_pivotSubsystem));
 
     new Trigger(m_driverController::getStartButton)
       .whileTrue(
