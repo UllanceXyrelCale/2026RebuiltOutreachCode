@@ -1,16 +1,7 @@
-<<<<<<< HEAD
 package frc.robot;
 
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
-=======
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
-package frc.robot;
-
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -19,18 +10,10 @@ import com.revrobotics.spark.config.AbsoluteEncoderConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
-<<<<<<< HEAD
 import static edu.wpi.first.units.Units.Amps;
 import frc.robot.Constants.ModuleConstants;
 
 public final class Configs {
-=======
-import frc.robot.Constants.ModuleConstants;
-
-/** Add your docs here. */
-public class Configs {
-
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
     public static final class MAXSwerveModule {
         public static final TalonFXConfiguration drivingConfig = new TalonFXConfiguration();
         public static final SparkMaxConfig turningConfig = new SparkMaxConfig();
@@ -43,25 +26,15 @@ public class Configs {
             drivingConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
             
             // Current Limits - ADDED STATOR LIMIT
-<<<<<<< HEAD
             drivingConfig.CurrentLimits.SupplyCurrentLimit = 40;
             drivingConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
             drivingConfig.CurrentLimits.StatorCurrentLimit = 70;  // 70
-=======
-            drivingConfig.CurrentLimits.SupplyCurrentLimit = 50;
-            drivingConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-            drivingConfig.CurrentLimits.StatorCurrentLimit = 70;  // NEW - swerve drive under load
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
             drivingConfig.CurrentLimits.StatorCurrentLimitEnable = true;
             
             drivingConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
             drivingConfig.Feedback.SensorToMechanismRatio = ModuleConstants.kDrivingMotorReduction;
 
-<<<<<<< HEAD
             drivingConfig.Slot0.kP = 0.1; //0.1
-=======
-            drivingConfig.Slot0.kP = 0.1;
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
             drivingConfig.Slot0.kI = 0.0;
             drivingConfig.Slot0.kD = 0.0;
             drivingConfig.Slot0.kV = drivingVelocityFeedForward;
@@ -88,11 +61,7 @@ public class Configs {
                     .pid(1, 0, 0)
                     .outputRange(-1, 1)
                     // Enable PID wrap around for the turning motor. This will allow the PID
-<<<<<<< HEAD
                     // contintake to go through 0 to get to the setpoint i.e. going from 350 degrees
-=======
-                    // controller to go through 0 to get to the setpoint i.e. going from 350 degrees
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
                     // to 10 degrees will go through 0 rather than the other direction which is a
                     // longer route.
                     .positionWrappingEnabled(true)
@@ -100,7 +69,6 @@ public class Configs {
         }
     }
 
-<<<<<<< HEAD
     public static final class shooterMotor {
 
         public static final TalonFXConfiguration shooterConfig = new TalonFXConfiguration();
@@ -285,6 +253,4 @@ public class Configs {
         }
     }
 
-=======
->>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 }
