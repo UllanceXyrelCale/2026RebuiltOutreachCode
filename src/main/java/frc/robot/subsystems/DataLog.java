@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -22,6 +23,18 @@ public class DataLog extends SubsystemBase {
     this.selectedTurnTargetXSupplier = selectedTurnTargetXSupplier;
     this.selectedTurnTargetYSupplier = selectedTurnTargetYSupplier;
   }
+=======
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Variables;
+import frc.robot.utils.LimelightToAPOTranslator;
+import frc.robot.utils.Pose;
+
+public class DataLog extends SubsystemBase {
+  public DataLog() {}
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
   @Override
 public void periodic() {
@@ -58,6 +71,7 @@ public void periodic() {
     SmartDashboard.putNumber("TurnTarget/Blue/X", Constants.TurnTargetConstants.kBlueHubX);
     SmartDashboard.putNumber("TurnTarget/Blue/Y", Constants.TurnTargetConstants.kBlueHubY);
 
+<<<<<<< HEAD
     SmartDashboard.putString("TurnTarget/SelectedName", selectedTurnTargetNameSupplier.get());
     SmartDashboard.putNumber("TurnTarget/SelectedX", selectedTurnTargetXSupplier.getAsDouble());
     SmartDashboard.putNumber("TurnTarget/SelectedY", selectedTurnTargetYSupplier.getAsDouble());
@@ -67,5 +81,12 @@ public void periodic() {
     SmartDashboard.putNumber("Shooter RPS", Variables.shooter.shooterRPS);
     SmartDashboard.putNumber("Pivot Position", Variables.pivot.pivotPosition);
     SmartDashboard.putNumber("Distance From Hub", Variables.distanceMeters);
+=======
+    SmartDashboard.putString("TurnTarget/SelectedName", RobotContainer.getSelectedTurnTargetName());
+    SmartDashboard.putNumber("TurnTarget/SelectedX", RobotContainer.getSelectedTurnTargetX());
+    SmartDashboard.putNumber("TurnTarget/SelectedY", RobotContainer.getSelectedTurnTargetY());
+    SmartDashboard.putNumber("TurnTarget/TargetAngleDeg", Variables.drive.targetHubAngleDeg);
+    SmartDashboard.putNumber("TurnTarget/AngleErrorDeg", Variables.drive.targetHubAngleErrorDeg);
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 }

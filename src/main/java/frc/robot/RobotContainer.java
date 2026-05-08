@@ -6,13 +6,22 @@ package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+=======
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
+<<<<<<< HEAD
 import frc.robot.auto.AutoRoutines;
 import frc.robot.auto.AutoSelector;
 import frc.robot.commands.PassSequence;
@@ -31,6 +40,17 @@ import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.utils.Calculations;
 import frc.robot.utils.Pose;
+=======
+import frc.robot.commands.DriveToPoint;
+import frc.robot.commands.TurnToAngle;
+import frc.robot.subsystems.DataLog;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.utils.Calculations;
+import frc.robot.utils.LimelightHelpers;
+import frc.robot.utils.Pose;
+//import frc.robot.subsystems.LimelightSubsystem;
+//import frc.robot.utils.PoseManager;
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -39,6 +59,7 @@ import frc.robot.utils.Pose;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+<<<<<<< HEAD
   /// The robot's subsystems and commands are defined here...
   public final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final ShooterSubsystem s_shooterSubsystem = new ShooterSubsystem();
@@ -62,6 +83,21 @@ public class RobotContainer {
           autoSelector::getSelectedHubName,
           autoSelector::getSelectedHubX,
           autoSelector::getSelectedHubY);
+=======
+  private static final String RED_ALLIANCE = "Red";
+  private static final String BLUE_ALLIANCE = "Blue";
+  private static final String RED_HUB = "Red Hub";
+  private static final String BLUE_HUB = "Blue Hub";
+
+  /// The robot's subsystems and commands are defined here...
+  public final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  //public final LimelightSubsystem m_limelight = new LimelightSubsystem();
+  public final DataLog m_datalog = new DataLog();
+  private final SendableChooser<String> m_allianceChooser = new SendableChooser<>();
+  private static final SendableChooser<String> m_turnTargetChooser = new SendableChooser<>();
+
+  //private final PoseManager m_poseManager = new PoseManager(m_robotDrive);
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   XboxController m_driverController =
@@ -70,13 +106,22 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     configureDashboard();
+<<<<<<< HEAD
     configureBindings();
 
     // Configure default commands.
+=======
+
+    // Configure the trigger bindings
+    configureBindings();
+
+        // Configure default commands
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
     m_robotDrive.setDefaultCommand(
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
+<<<<<<< HEAD
             () ->
                 m_robotDrive.drive(
                     -MathUtil.applyDeadband(
@@ -89,11 +134,28 @@ public class RobotContainer {
                         m_driverController.getRightX(),
                         OIConstants.kDriveDeadband),
                     true),
+=======
+            () -> m_robotDrive.drive(
+                -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
+                true),
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
             m_robotDrive));
   }
 
   private void configureDashboard() {
+<<<<<<< HEAD
     autoSelector.publishToDashboard();
+=======
+    m_allianceChooser.setDefaultOption(RED_ALLIANCE, RED_ALLIANCE);
+    m_allianceChooser.addOption(BLUE_ALLIANCE, BLUE_ALLIANCE);
+    SmartDashboard.putData("Alliance Start", m_allianceChooser);
+
+    m_turnTargetChooser.setDefaultOption(RED_HUB, RED_HUB);
+    m_turnTargetChooser.addOption(BLUE_HUB, BLUE_HUB);
+    SmartDashboard.putData("Turn Target", m_turnTargetChooser);
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   /**
@@ -106,6 +168,7 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+<<<<<<< HEAD
     new Trigger(() -> m_driverController.getRightTriggerAxis() > 0.2)
         .whileTrue(
             new ShootSequence(
@@ -155,6 +218,29 @@ public class RobotContainer {
 
     new Trigger(m_driverController::getLeftBumperButton)
         .whileTrue(new SetPivotPosition(s_pivotSubsystem, 10));
+=======
+    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+
+    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
+    // cancelling on release.
+
+    new Trigger(m_driverController::getLeftBumperButton)
+      .whileTrue(
+        new RunCommand(
+          () -> m_robotDrive.drive(LimelightHelpers.getTY("limelight-naci") * -0.1, -m_driverController.getLeftX(), LimelightHelpers.getTX("limelight-naci") * -0.05, false), m_robotDrive)
+      );
+
+    new Trigger(m_driverController::getBButton)
+      .whileTrue(new TurnToAngle(m_robotDrive, () -> Variables.drive.targetHubAngleDeg, 2.0));
+
+    new Trigger(m_driverController::getAButton)
+      .whileTrue(new SequentialCommandGroup(
+        new DriveToPoint(m_robotDrive, -14.75, -4, 0, 0.1, 2.0, true),
+        new DriveToPoint(m_robotDrive, -14.75, -1.2, 0, 0.1, 2.0, true)
+      ).repeatedly());
+
+
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   /**
@@ -163,7 +249,12 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+<<<<<<< HEAD
     return autoRoutines.getCommandForMode(autoSelector.getSelectedMode());
+=======
+    // An example command will be run in autonomous
+    return null;
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   public DriveSubsystem getDriveSubsystem() {
@@ -171,6 +262,7 @@ public class RobotContainer {
   }
 
   public double getSelectedStartingHeadingDeg() {
+<<<<<<< HEAD
     return autoSelector.getSelectedStartingHeadingDeg();
   }
 
@@ -184,13 +276,39 @@ public class RobotContainer {
 
   private double getAllianceAdjustedDriverAxis(double axisValue) {
     return autoSelector.isBlueSelected() ? -axisValue : axisValue;
+=======
+    String alliance = m_allianceChooser.getSelected();
+    return BLUE_ALLIANCE.equals(alliance) ? 180.0 : 0.0;
+  }
+
+  public static String getSelectedTurnTargetName() {
+    String selectedTarget = m_turnTargetChooser.getSelected();
+    return BLUE_HUB.equals(selectedTarget) ? BLUE_HUB : RED_HUB;
+  }
+
+  public static double getSelectedTurnTargetX() {
+    return BLUE_HUB.equals(getSelectedTurnTargetName())
+        ? Constants.TurnTargetConstants.kBlueHubX
+        : Constants.TurnTargetConstants.kRedHubX;
+  }
+
+  public static double getSelectedTurnTargetY() {
+    return BLUE_HUB.equals(getSelectedTurnTargetName())
+        ? Constants.TurnTargetConstants.kBlueHubY
+        : Constants.TurnTargetConstants.kRedHubY;
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 
   public void periodic() {
     Pose currentPose = m_robotDrive.getPose();
+<<<<<<< HEAD
     double dx = autoSelector.getSelectedHubX() - currentPose.getX();
     double dy = autoSelector.getSelectedHubY() - currentPose.getY();
     Variables.distanceMeters = Math.hypot(dx, dy);
+=======
+    double dx = getSelectedTurnTargetX() - currentPose.getX();
+    double dy = getSelectedTurnTargetY() - currentPose.getY();
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
     Variables.drive.targetHubAngleDeg =
         Calculations.normalizeAngle360(Math.toDegrees(Math.atan2(dy, dx)));
@@ -198,5 +316,9 @@ public class RobotContainer {
         Calculations.shortestAngularDistance(
             Variables.drive.targetHubAngleDeg,
             Calculations.normalizeAngle360(currentPose.getAngle()));
+<<<<<<< HEAD
+=======
+    //m_poseManager.update();
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   }
 }

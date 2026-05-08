@@ -111,6 +111,7 @@ public final class Constants {
 
   public static final class TurnTargetConstants {
     public static final double kRedHubX = -12.20;
+<<<<<<< HEAD
     public static final double kRedHubY = -4;
 
     public static final double kBlueHubX = -4.25;
@@ -122,5 +123,12 @@ public final class Constants {
     public static final double kFreeSpeedRPS = 100.0;
   }
 
+=======
+    public static final double kRedHubY = -4.0;
+
+    public static final double kBlueHubX = 1.0;
+    public static final double kBlueHubY = 1.0;
+  }
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   
 }

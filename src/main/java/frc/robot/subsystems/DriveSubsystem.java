@@ -19,7 +19,10 @@ import frc.robot.utils.APOdometry;
 import frc.robot.utils.Calculations;
 import frc.robot.utils.LimelightToAPOTranslator;
 import frc.robot.utils.Pose;
+<<<<<<< HEAD
 import frc.robot.utils.Vector;
+=======
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -76,11 +79,14 @@ public void periodic() {
     return m_odometry.getPoseContinuous();
   }
 
+<<<<<<< HEAD
   public Vector getFieldVelocity() {
     Vector velocity = m_odometry.getVelocity();
     return new Vector(velocity.getX(), velocity.getY());
   }
 
+=======
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   public void setPose(Pose pose) {
     m_odometry.setPose(pose);
   }
@@ -157,10 +163,13 @@ public void periodic() {
     m_gyro.setYaw(rawYaw);
   }
 
+<<<<<<< HEAD
   public void resetGyro() {
     setGyroYaw(0.0);
   }
 
+=======
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
   public double getVisionYaw() {
   return m_gyro.getRotation2d().getDegrees()
       * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
@@ -206,4 +215,8 @@ public void correctPositionFromLimelight() {
 
   m_odometry.translatePose(dx, dy);
 }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5ad2726df04907c16c7e32c8bd0e8ba4619a61ca
